@@ -35,7 +35,8 @@ function UpdatePost({ id }) {
           description,
         }
       );
-      if (response.statusText === "OK") {
+      console.log(response);
+      if (response.status === 200) {
         navigate("/");
       }
     } catch (error) {
@@ -48,9 +49,12 @@ function UpdatePost({ id }) {
       const response = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/post/${postid}`
       );
-      const { post } = response.data;
-      setTitle(post.title);
-      setDescrition(post.description);
+      if(response.data){
+        const { post } = response.data;
+        setTitle(post.title);
+        setDescrition(post.description);
+      }
+     
     } catch (e) {}
   };
   useEffect(() => {

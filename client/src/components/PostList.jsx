@@ -14,17 +14,18 @@ import axios from 'axios'
 function PostList() {
   const [post, setPost] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const deletePost = async (id) => {
-    const confirmation = window.confirm("Are you sure to delete");
+  const deletePost = async (id,title) => {
+    const confirmation = window.confirm(`Are you sure to delete ${title}`);
     if (!confirmation) {
       return;
     }
     try {
       const response = await axios.delete(
         `${process.env.REACT_APP_BACKEND_URL}/api/deletepost/${id}`);
-
-      if(response.statusText === "OK"){
-       await getPosts()
+       
+      if(response.data === "Deleted"){
+        await getPosts()
+  
       }else{
         const errResponse=await response.json()
         throw new Error(errResponse.message)
@@ -82,7 +83,7 @@ function PostList() {
                         <AiFillDelete
                           className="text-danger"
                           role="button"
-                          onClick={() => deletePost(post._id)}
+                          onClick={() => deletePost(post._id,post.title)}
                         />
                       </Col>
                     </Row>

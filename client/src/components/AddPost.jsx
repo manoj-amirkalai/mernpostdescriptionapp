@@ -30,6 +30,7 @@ function AddPost() {
           title,
           description,
       });
+      console.log(response.data);
       if(response.data.message ==="Post created"){
         navigate('/')}
 
