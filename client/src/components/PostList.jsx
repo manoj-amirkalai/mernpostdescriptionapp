@@ -21,7 +21,7 @@ function PostList() {
     }
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/deletepost/${id}`);
+        `${process.env.REACT_APP_BACKEND_URL}/api/deletepost/${id}`);
 
       if(response.statusText === "OK"){
        await getPosts()
@@ -36,7 +36,7 @@ function PostList() {
   const getPosts = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get("http://localhost:5000/api/posts");
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/posts`);
       setPost(response.data);
     } catch (e) {
     } finally {

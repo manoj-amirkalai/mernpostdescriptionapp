@@ -26,7 +26,7 @@ function AddPost() {
     }
     try {
       setIsLoading(true);
-      const response = await axios.post("http://localhost:5000/api/createpost", {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/createpost`, {
           title,
           description,
       });

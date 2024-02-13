@@ -29,7 +29,7 @@ function UpdatePost({ id }) {
     try {
       setLoading(true);
       const response = await axios.put(
-        `http://localhost:5000/api/updatepost/${postid}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/updatepost/${postid}`,
         {
           title,
           description,
@@ -46,7 +46,7 @@ function UpdatePost({ id }) {
   const getSinglePost = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/post/${postid}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/post/${postid}`
       );
       const { post } = response.data;
       setTitle(post.title);
